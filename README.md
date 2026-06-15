@@ -30,4 +30,4 @@ async function addWidget(appId) {
 // Usage
 addWidget("APPLICATION_ID");
 ```
-From (Discord Previews)[https://discord.gg/discord-603970300668805120]
+From [Discord Previews](https://discord.gg/discord-603970300668805120)
