@@ -29,7 +29,6 @@ class WidgetSetup {
   constructor(name = "placeholder", description = "placeholder") {
     this.name = name;
     this.description = description;
-    this.workerHolder = [];
   }
 
   createCommand(params) {
@@ -65,6 +64,7 @@ class WidgetSetup {
     );
 
     const user_cookies = await NET_login(cookie);
+    const workerHolder = [];
 
     for (let index = 0; index < workerPaths.length; index++) {
       const element = workerPaths[index];
@@ -73,14 +73,14 @@ class WidgetSetup {
         user_cookies,
         interaction,
       );
-      this.workerHolder.push(PormiseWorker);
+      workerHolder.push(PormiseWorker);
     }
     await interaction.editReply({
       content: "Getting Player Data",
       flags: MessageFlags.Ephemeral,
     });
 
-    const [user, circle, stats] = await Promise.all(this.workerHolder);
+    const [user, circle, stats] = await Promise.all(workerHolder);
 
     await interaction.editReply({
       content: "Updating Widget",
