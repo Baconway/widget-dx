@@ -27,6 +27,18 @@ export async function updateWidget(data, userID) {
           dynamic: [
             {
               type: 1,
+              name: "Preview Player Name",
+              value: data.name,
+            },
+            {
+              type: 3,
+              name: "Preview Icon",
+              value: {
+                url: "<URL to Preview Icon.png>",
+              },
+            },
+            {
+              type: 1,
               name: "Rating",
               value: data.rating,
             },
