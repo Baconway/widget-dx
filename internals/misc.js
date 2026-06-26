@@ -15,27 +15,28 @@ export function processToProxy(url_string) {
 export async function updateWidget(data, userID) {
   console.log(data);
   const a = await fetch(
-    `https://discord.com/api/v9/applications/${process.env.BOT_ID}/users/${userID}/identities/0/profile`,
+    `https://discord.com/api/v10/applications/${process.env.BOT_ID}/users/${userID}/identities/0/profile`,
     {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bot ${process.env.BOT_TOKEN}`,
+        "User-Agent": "DiscordBot",
       },
       body: JSON.stringify({
         data: {
           dynamic: [
             {
-              type: 1,
-              name: "Preview Player Name",
-              value: data.name,
+              type: 3,
+              name: "Icon",
+              value: {
+                url: data.icon,
+              },
             },
             {
-              type: 3,
-              name: "Preview Icon",
-              value: {
-                url: "<URL to Preview Icon.png>",
-              },
+              type: 1,
+              name: "Player Name",
+              value: data.name,
             },
             {
               type: 1,
@@ -68,20 +69,22 @@ export async function updateWidget(data, userID) {
               value: data.code,
             },
             {
+              type: 1,
+              name: "Preview Player Name",
+              value: data.name,
+            },
+            {
               type: 3,
-              name: "Icon",
+              name: "Preview Icon",
               value: {
                 url: data.icon,
               },
-            },
-            {
-              type: 1,
-              name: "Player Name",
-              value: data.name,
             },
           ],
         },
       }),
     },
   );
+
+  console.log(a);
 }
