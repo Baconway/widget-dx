@@ -1,0 +1,6 @@
+services:
+  bway-widget:
+    build: /root/dockerhost/bway-widget-dx
+
+  cheezy-widget:
+    build: /root/dockerhost/cheezy-widget-dx

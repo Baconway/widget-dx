@@ -19,7 +19,7 @@ export async function updateWidget(data, userID) {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bot ${botTOKEN.value}`,
+        Authorization: `Bot ${process.env.BOT_TOKEN}`,
         "User-Agent": "DiscordBot",
       },
       body: JSON.stringify({
