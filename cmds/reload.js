@@ -19,16 +19,6 @@ pw_option.setRequired(true);
 pw_option.setName("password");
 pw_option.setDescription("password");
 
-const appID_option = new SlashCommandStringOption();
-appID_option.setRequired(true);
-appID_option.setName("app_id");
-appID_option.setDescription("Your Application ID");
-
-const botTOKEN_option = new SlashCommandStringOption();
-botTOKEN_option.setRequired(true);
-botTOKEN_option.setName("bot_token");
-botTOKEN_option.setDescription("Your Bot Token");
-
 const workerPaths = [
   "./internals/user.js",
   "./internals/circle.js",
@@ -48,8 +38,6 @@ class WidgetSetup {
 
     this.build.addStringOption(segaID_option);
     this.build.addStringOption(pw_option);
-    this.build.addStringOption(appID_option);
-    this.build.addStringOption(botTOKEN_option);
   }
 
   createPromiseWorker(path, user_cookies, interaction) {
@@ -105,8 +93,6 @@ class WidgetSetup {
         ...stats,
       },
       interaction.user.id,
-      interaction.options.get("app_id"),
-      interaction.options.get("bot_token"),
     );
 
     await interaction.editReply({
