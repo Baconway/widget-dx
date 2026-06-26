@@ -12,10 +12,10 @@ export function processToProxy(url_string) {
 }
 
 //idk where to put this lol
-export async function updateWidget(data, userID, appID, botTOKEN) {
-  //console.log(appID.value, botTOKEN.value);
+export async function updateWidget(data, userID) {
+  console.log(data);
   const a = await fetch(
-    `https://discord.com/api/v10/applications/${appID.value}/users/${userID}/identities/${userID}/profile`,
+    `https://discord.com/api/v10/applications/${process.env.BOT_ID}/users/${userID}/identities/0/profile`,
     {
       method: "PATCH",
       headers: {
@@ -85,5 +85,6 @@ export async function updateWidget(data, userID, appID, botTOKEN) {
       }),
     },
   );
+
   console.log(data.name, "updated their widget with status code: ", a.status);
 }
