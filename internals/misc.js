@@ -13,7 +13,6 @@ export function processToProxy(url_string) {
 
 //idk where to put this lol
 export async function updateWidget(data, userID) {
-  console.log(data);
   const a = await fetch(
     `https://discord.com/api/v10/applications/${process.env.BOT_ID}/users/${userID}/identities/0/profile`,
     {
