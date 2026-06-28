@@ -63,7 +63,7 @@ class WidgetSetup {
       interaction.options.get("password"),
     );
 
-    const user_cookies = await NET_login(cookie);
+    let user_cookies = await NET_login(cookie);
     const workerHolder = [];
 
     for (let index = 0; index < workerPaths.length; index++) {
@@ -94,6 +94,8 @@ class WidgetSetup {
       },
       interaction.user.id,
     );
+
+    user_cookies = null;
 
     await interaction.editReply({
       content: "Update Complete!",
