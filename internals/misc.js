@@ -1,18 +1,21 @@
 import "dotenv/config";
 
 export function processToProxy(url_string) {
+  console.log(url_string);
   const match = url_string.match(
-    /\/(?<folder>[^\/]+)\/(?<filename>[^\/]+\.png)$/,
+    /\/(?<folder>[^\/]+)\/(?<filename>[^\/?]+\.png)(?<query>\?.*)?$/,
   );
-
+  console.log(match);
   if (!match) return `${process.env.PROXY_URL}/Icon/`;
 
-  const { folder, filename } = match.groups;
-  return `${process.env.PROXY_URL}/${folder}/${filename}`;
+  const { folder, filename, query } = match.groups;
+  console.log(folder, filename);
+  return `${process.env.PROXY_URL}/${folder !== "img" ? folder : ""}/${filename}${query ? query : ""}`;
 }
 
 //idk where to put this lol
 export async function updateWidget(data, userID) {
+  console.log(data);
   const a = await fetch(
     `https://discord.com/api/v10/applications/${process.env.BOT_ID}/users/${userID}/identities/0/profile`,
     {
@@ -27,15 +30,10 @@ export async function updateWidget(data, userID) {
           dynamic: [
             {
               type: 3,
-              name: "Icon",
+              name: "Rating Block",
               value: {
-                url: data.icon,
+                url: data.rating_src,
               },
-            },
-            {
-              type: 1,
-              name: "Player Name",
-              value: data.name,
             },
             {
               type: 1,
@@ -48,24 +46,40 @@ export async function updateWidget(data, userID) {
               value: data.stars,
             },
             {
-              type: 1,
-              name: "Circle",
-              value: data.circle,
+              type: 3,
+              name: "Course Block",
+              value: {
+                url: data.course_icon,
+              },
             },
             {
               type: 1,
-              name: "Version Playcount",
-              value: data.version,
+              name: "Course",
+              value: data.course,
+            },
+            {
+              type: 3,
+              name: "Class Block",
+              value: {
+                url: data.class_icon,
+              },
             },
             {
               type: 1,
-              name: "Total Playcount",
-              value: data.total,
+              name: "Class",
+              value: data.class,
+            },
+            {
+              type: 3,
+              name: "Icon",
+              value: {
+                url: data.icon,
+              },
             },
             {
               type: 1,
-              name: "Circle Code",
-              value: data.code,
+              name: "Player Name",
+              value: data.name,
             },
             {
               type: 1,

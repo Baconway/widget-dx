@@ -63,7 +63,15 @@ class WidgetSetup {
       interaction.options.get("password"),
     );
 
+    if (!cookie) {
+      return await interaction.editReply({
+        content: "Cookie extraction failed, please try again",
+        flags: MessageFlags.Ephemeral,
+      });
+    }
+
     let user_cookies = await NET_login(cookie);
+
     const workerHolder = [];
 
     for (let index = 0; index < workerPaths.length; index++) {
@@ -75,6 +83,7 @@ class WidgetSetup {
       );
       workerHolder.push(PormiseWorker);
     }
+
     await interaction.editReply({
       content: "Getting Player Data",
       flags: MessageFlags.Ephemeral,

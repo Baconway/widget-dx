@@ -90,8 +90,8 @@ export async function sid_login(sid, password) {
   });
 
   const clal = get_clal(call.headers.getSetCookie());
-
-  return { cookie: clal.cookie };
+  if (clal.cookie) return { cookie: clal.cookie };
+  else return { cookies: null };
 }
 
 const END_PAGE = "https://maimaidx-eng.com/maimai-mobile/home/";
