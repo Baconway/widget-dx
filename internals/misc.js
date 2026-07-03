@@ -1,16 +1,13 @@
 import "dotenv/config";
 
 export function processToProxy(url_string) {
-  console.log(url_string);
   const match = url_string.match(
     /\/(?<folder>[^\/]+)\/(?<filename>[^\/?]+\.png)(?<query>\?.*)?$/,
   );
-  console.log(match);
   if (!match) return `${process.env.PROXY_URL}/Icon/`;
 
   const { folder, filename, query } = match.groups;
-  console.log(folder, filename);
-  return `${process.env.PROXY_URL}/${folder !== "img" ? folder : ""}/${filename}${query ? query : ""}`;
+  return `${process.env.PROXY_URL}${folder !== "img" ? `/${folder}` : ""}/${filename}${query ? query : ""}`;
 }
 
 //idk where to put this lol
@@ -32,7 +29,7 @@ export async function updateWidget(data, userID) {
               type: 3,
               name: "Rating Block",
               value: {
-                url: data.rating_src,
+                url: data.rating_icon,
               },
             },
             {
@@ -92,6 +89,11 @@ export async function updateWidget(data, userID) {
               value: {
                 url: data.icon,
               },
+            },
+            {
+              type: 1,
+              name: "Title",
+              value: `${data.title_color}${data.title}${data.title_color}`,
             },
           ],
         },

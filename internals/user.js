@@ -87,7 +87,7 @@ async function parse_user_main(cookies) {
   const holder = {
     name: "",
     rating: 0,
-    rating_src: "",
+    rating_icon: "",
     stars: 0,
     icon: "",
     class: "",
@@ -97,18 +97,13 @@ async function parse_user_main(cookies) {
     title: "",
     title_color: "",
   };
+
   holder.title = user_profile
     .querySelector(".basic_block.p_10.f_0")
     .querySelector(".p_l_10.f_l")
     .querySelector(".trophy_block")
     .querySelector(".trophy_inner_block.f_13 span").textContent;
-  console.log(
-    user_profile
-      .querySelector(".basic_block.p_10.f_0")
-      .querySelector(".p_l_10.f_l")
-      .querySelector(".trophy_block")
-      .querySelector(".trophy_inner_block.f_13 span").textContent,
-  );
+
   const title_id = user_profile
     .querySelector(".basic_block.p_10.f_0")
     .querySelector(".p_l_10.f_l")
@@ -125,7 +120,7 @@ async function parse_user_main(cookies) {
     10,
   );
 
-  holder.rating_src = processToProxy(
+  holder.rating_icon = processToProxy(
     user_profile.querySelector("img[src*='rating_base_']")?.getAttribute("src"),
   );
 
