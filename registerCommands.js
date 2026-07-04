@@ -3,14 +3,17 @@ import "dotenv/config";
 import { REST, Routes } from "discord.js";
 import BuiltSetup from "./cmds/setup.js";
 import BuiltReload from "./cmds/reload.js";
+import BuiltTokenReload from "./cmds/reload_token.js";
 
 BuiltSetup.createCommand();
 BuiltReload.createCommand();
+BuiltTokenReload.createCommand();
 
 const cmds = [];
 
 cmds.push(BuiltSetup.build.toJSON());
 cmds.push(BuiltReload.build.toJSON());
+cmds.push(BuiltTokenReload.build.toJSON());
 
 const rest = new REST().setToken(process.env.BOT_TOKEN);
 
