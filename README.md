@@ -1,6 +1,12 @@
 # maimai でらっくす Discord Widget
 
-Used on your profile
+# WARNING
+
+Discord has disabled creating widgets, limiting it to registered games. If you previously created an app with widgets, it should still work
+
+Otherwise, this project no longer works
+
+## Notes
 
 Currently only supports SegaID
 
